@@ -1,0 +1,136 @@
+<!DOCTYPE html><html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Convert</title>
+    </head>
+    <style type="text/css">
+        #map {
+            bottom: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        #box{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 700px;
+            z-index: 5;
+            background-color: rgba(255,255,255,0.75);
+        }
+    </style>
+    <body>
+        <script src='http://rub21.github.io/download-osm-data/lib/mapbox_V0.6.6.js'></script>
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="http://twbs.github.io/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://twbs.github.io/bootstrap/dist/css/bootstrap.min.css">
+        <div id="box">
+            <div class="row" style=" margin-left:  5px">
+                <label>Insert URL</label>
+                <input type="text" name="url" size="110" id="url">
+                <br>
+                <br>
+                <button type="submit" id="button" class="btn btn-default">Submit</button>
+                <br>
+                <br>
+                <label>OSM :</label>
+                <a id="r_osm" target="_blank" href="#">OSM</a>
+                <br>
+                <label>Mapbox :</label>
+                <a id="r_mapbox" target="_blank" href="#">Mapbox</a>
+                <br>
+                <label>G Map :</label>
+                <a id="r_gmap"  target="_blank" href="#">Google</a>
+                <br>
+                <label>Compare Maps:</label>
+                <a id="compare"  target="_blank" href="#">Compare</a>
+                <br>
+                <label>Compare Satelite:</label>
+                <a id="compare_satelite"  target="_blank" href="#">Compare</a>
+                <br>
+                <label>Mapbox vs OSM</label>
+                <a id="mapbox_osm"  target="_blank" href="#">Compare</a>
+                <br>
+                <label>Descarga visualizacion:</label>
+                <a id="visualizacion"  target="_blank" href="#">Compare</a>
+
+                <br>
+
+
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="josm">Download in JOSM</button>
+            </div>
+        </div>
+        <div class="row">
+            <div id="map"></div>
+        </div>
+        <script>
+            var map = mapbox.map('map');
+            var layer_osm = new MM.Layer(new MM.MapProvider(function(coord) {
+                var img = parseInt(coord.zoom) + '/' + parseInt(coord.column) + '/' + parseInt(coord.row) + '.png';
+                return "http://a.tile.openstreetmap.org/" + img,
+                        "http://b.tile.openstreetmap.org/" + img,
+                        "http://c.tile.openstreetmap.org/" + img;
+            }));
+            map.addLayer(layer_osm);
+            map.setZoomRange(3, 19);
+            map.centerzoom({
+                lat: 41.474,
+                lon: -101.034
+            }, 4);
+            map.ui.zoomer.add();
+            map.ui.zoombox.add();
+            map.ui.hash.add(
+                    function() {
+                        alert('ee');
+                    }
+            );
+            $(document).on('ready', function() {
+                $('#button').click(function() {
+                    var url = $('#url').val();
+                    var str = 'openstreetmap';
+                    if (url.indexOf(str) > -1) {
+                        var lon = url.split("#")[1].split("/")[2];
+                        var lat = url.split("#")[1].split("/")[1];
+                        var zoom = url.split("#")[1].split("/")[0].replace('map=', '');
+                    } else {
+                        var lon = url.split("@")[1].split(",")[1];
+                        var lat = url.split("@")[1].split(",")[0];
+                        var zoom = url.split("@")[1].split(",")[2].slice(0, 2);
+                    }
+                    $('#r_osm').attr("href", "https://www.openstreetmap.org/#map=" + zoom + "/" + lat + "/" + lon);
+                    $('#r_osm').text("https://www.openstreetmap.org/#map=" + zoom + "/" + lat + "/" + lon);
+                    $('#r_mapbox').attr("href", "https://a.tiles.mapbox.com/v3/ruben.idla11bn/page.html#" + zoom + "/" + lat + "/" + lon);
+                    $('#r_mapbox').text("https://a.tiles.mapbox.com/v3/ruben.idla11bn/page.html#" + zoom + "/" + lat + "/" + lon);
+                    $('#r_gmap').attr("href", "https://www.google.com/maps/@" + lat + "," + lon + "," + zoom + "z");
+                    $('#r_gmap').text("https://www.google.com/maps/@" + lat + "," + lon + "," + zoom + "z");
+                    $('#compare').attr("href", "http://lxbarth.com/compare/#" + zoom + "/" + lat + "/" + lon);
+                    $('#compare').text("http://lxbarth.com/compare/#" + zoom + "/" + lat + "/" + lon);
+                    $('#compare_satelite').attr("href", "http://lxbarth.com/swipe/?bing&google.SATELLITE#" + zoom + "/" + lat + "/" + lon);
+                    $('#compare_satelite').text("http://lxbarth.com/swipe/?bing&google.SATELLITE#" + zoom + "/" + lat + "/" + lon);
+
+                    $('#visualizacion').attr("href", "http://rub21.github.io/download-osm-data/#" + zoom + "/" + lat + "/" + lon);
+                    $('#visualizacion').text("http://rub21.github.io/download-osm-data/#" + zoom + "/" + lat + "/" + lon);
+
+                    $('#mapbox_osm').attr("href", "http://lxbarth.com/swipe/?lxbarth.map-x55dflb4&osm#" + zoom + "/" + lat + "/" + lon);
+                    $('#mapbox_osm').text("http://lxbarth.com/swipe/?lxbarth.map-x55dflb4&osm#" + zoom + "/" + lat + "/" + lon);
+
+//
+//http://lxbarth.com/compare/?&bing&google=SATELLITE#19/52.48054/13.42274
+
+                    map.centerzoom({
+                        lat: lat,
+                        lon: lon
+                    }, zoom);
+                    map.ui.z
+                });
+                $('#josm').click(function() {
+                    var mapzoom = map.getZoom();
+                    if (mapzoom >= 15) {
+                        var locations = (map.getExtent() + '').split(',');
+                        $.ajax('http://localhost:8111/load_and_zoom?left=' + locations[1] + '&right=' + locations[3] + '&top=' + locations[0] + '&bottom=' + locations[2]);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

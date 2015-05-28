@@ -1,0 +1,13 @@
+{
+  "name": "request-tofix",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Rub21",
+  "license": "ISC",
+  "engines": {
+    "node": "0.10.26"
+  },
+  "dependencies": {
+    "request": "^2.55.0"
+  }
+}
