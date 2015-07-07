@@ -22,7 +22,6 @@ var CommentBox = React.createClass({
     var newComments = comments.concat([comment]);
     this.setState({data: newComments});
 
-
      $.ajax({
       url: this.props.url_write,
       dataType: 'json',
@@ -58,7 +57,7 @@ var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function (comment) {
       return (
-        <Comment author={comment.author}>
+        <Comment author={comment.author} number={comment.number}>
           {comment.text}
         </Comment>
       );
@@ -75,8 +74,10 @@ var Comment = React.createClass({
 
   render: function() {
   	var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+  	var url_img="http://veekun.com/dex/media/pokemon/dream-world/"+this.props.number+".svg";
     return (
       <div className="comment">
+      <img src={url_img}  width="60"/>
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
@@ -94,19 +95,21 @@ var CommentForm = React.createClass({
     e.preventDefault();
     var author = React.findDOMNode(this.refs.author).value.trim();
     var text = React.findDOMNode(this.refs.text).value.trim();
-    if (!text || !author) {
+    var number = React.findDOMNode(this.refs.number).value.trim();    
+    if (!text || !author || !number) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text});
+    this.props.onCommentSubmit({author: author, text: text,number:number});
     React.findDOMNode(this.refs.author).value = '';
     React.findDOMNode(this.refs.text).value = '';
     return;
   },
   render: function() {
     return (
-      <form className="commentForm" onSubmit={this.handleSubmit}>
+      <form className="commentForm" onSubmit={this.handleSubmit}>      
         <input type="text" placeholder="Your name" ref="author" />
         <input type="text" placeholder="Say something..." ref="text" />
+        <input type="text" placeholder="number < 700" ref="number" />
         <input type="submit" value="Post" />
       </form>
     );
