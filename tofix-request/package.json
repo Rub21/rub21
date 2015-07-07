@@ -1,0 +1,15 @@
+{
+  "name": "tofix-request",
+  "version": "1.0.0",
+  "description": "simple reques to to-fix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ruben Lopez M <ruben@mapbox.com> (http://rub21.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.57.0",
+    "request-json": "^0.5.3"
+  }
+}
