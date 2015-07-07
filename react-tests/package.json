@@ -1,0 +1,23 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "react": "^0.13.1",
+    "react-router": "^0.13.2",
+    "reflux": "^0.2.7"
+  },
+  "devDependencies": {
+    "reactify": "^1.1.0",
+    "serve": "^1.4.0",
+    "watchify": "^2.4.0"
+  },
+  "scripts": {
+    "start": "watchify -d -t reactify src/index.js -o dist/bundle.js & serve"
+  },
+  "author": "Ruben Lopez M <ruben@mapbox.com> (http://rub21.github.io/)",
+  "license": "ISC"
+}
