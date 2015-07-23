@@ -29,8 +29,7 @@ var NoteApp = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <NoteListBox onEdit={this.onEdit} onAdd={this.onAdd}/>
-                    <NoteCreateBox id={this.state.id} />
+
                     <Upload/>
                 </div>
             </div>
@@ -40,4 +39,6 @@ var NoteApp = React.createClass({
 
 });
 
+//                    <NoteListBox onEdit={this.onEdit} onAdd={this.onAdd}/>
+    //                <NoteCreateBox id={this.state.id} />
 module.exports= NoteApp;
