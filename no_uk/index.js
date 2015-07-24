@@ -27,7 +27,7 @@ setTimeout(function() {
 			console.log(" Filas: " + results.rows.length)
 			results.rows.forEach(function(row) {
 				var item = JSON.parse(row.value.split('|').join('"'))
-				var coor = item.st_astext.replace('POINT(', '').replace(')', '').split(' ').reverse();
+				var coor = item.st_astext.replace('POINT(', '').replace(')', '').split(' ');
 				console.log(i++);
 				if (pointinpolygon(coor, obj.features[0].geometry.coordinates[0])) {
 					var q = 'UPDATE highwayhighway SET "time"= 2147483646 WHERE key = \'' + row.key + '\';\n';
