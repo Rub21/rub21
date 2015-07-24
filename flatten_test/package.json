@@ -1,0 +1,15 @@
+{
+  "name": "flatten_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ruben Lopez M <ruben@mapbox.com> (http://rub21.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "geojson-flatten": "^0.1.0",
+    "geojson-normalize": "0.0.1"
+  }
+}

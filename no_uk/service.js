@@ -32,7 +32,7 @@ var options = {
 
 var highway = ['footway', 'path', 'track', 'cycleway', 'bridleway', 'steps'];
 setTimeout(function() {
-	var query = 'SELECT key, value, "time"  FROM highwayhighway WHERE "time" = 0 limit 500;';
+	var query = 'SELECT key, value, "time"  FROM highwayhighway WHERE "time" = 0;';
 	var cliente = client.query(query, function(err, results) {
 		results.rows.forEach(function(row) {
 			var item = JSON.parse(row.value.split('|').join('"'));
