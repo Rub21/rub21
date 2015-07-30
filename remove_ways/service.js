@@ -67,7 +67,7 @@ function init(limit, offset) {
 }
 
 setTimeout(function() {
-	crontab.scheduleJob("0 */3 * * * ", function() {
+	crontab.scheduleJob("0 0 */3 * * ", function() {
 		if (count < 14) {
 			init(nums[count + 1], nums[count]);
 			count++;
