@@ -1,0 +1,17 @@
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'a303fce5347ea22f379b3539a28a21a2';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '5a82b969a5d699d59ca8d98d64451227';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ffca3474e423ffe0fc2233f21dee14a1';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '68455aa1c89af9d8a30ee4b7bda91da2';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ea52789cf138db0625e88b2e4de1d522';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '0227b6e882b7410dee3fa03f697dea30';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '645273f1622db54de4a01145e4d43551';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ad52c16f0a9f2a1a99e8b4e00e340c89';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'a303fce5347ea22f379b3539a28a21a2';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'a303fce5347ea22f379b3539a28a21a2';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '5a82b969a5d699d59ca8d98d64451227';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ea52789cf138db0625e88b2e4de1d522';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '68455aa1c89af9d8a30ee4b7bda91da2';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ffca3474e423ffe0fc2233f21dee14a1';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '0227b6e882b7410dee3fa03f697dea30';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = 'ad52c16f0a9f2a1a99e8b4e00e340c89';
+UPDATE highwayhighway SET "time"= 2147483646 WHERE key = '645273f1622db54de4a01145e4d43551';

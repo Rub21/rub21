@@ -32,11 +32,14 @@ var options = {
 
 var highway = ['footway', 'path', 'track', 'cycleway', 'bridleway', 'steps'];
 setTimeout(function() {
-	var query = 'SELECT key, value, "time"  FROM highwayhighway WHERE "time" = 0;';
+	var query = 'SELECT key, value, "time"  FROM highwayhighway WHERE "time" = 0 limit 50;';
 	var cliente = client.query(query, function(err, results) {
 		results.rows.forEach(function(row) {
 			var item = JSON.parse(row.value.split('|').join('"'));
-			var url = 'http://overpass-api.de/api/interpreter?data=way(' + item.object_id + ');out;';
+			//var url = 'http://overpass-api.de/api/interpreter?data=way(' + item.object_id + ');out;';
+			var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=way(' + item.object_id + ');out;';
+			//var url = 'http://www.openstreetmap.org/api/0.6/way/'+ item.object_id + '/history';
+			console.log(url)
 			request(url, function(error, response, body) {
 				if (!error && response.statusCode == 200) {
 					var json = parser.toJson(body, options);
