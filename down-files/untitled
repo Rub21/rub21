@@ -1,0 +1,13 @@
+
+
+    while read -r line; do
+        base=$(basename $line)
+        echo $base
+        if [ -e data/${base%.*} ] || [ ! -e data/$base ]; then
+            echo aws s3 cp --quiet $line data/
+            if [ ${line: -3} == ".gz" ]; then
+                echo gzip -d data/${line##*/}
+            fi
+        fi
+    done < mbtiles-list
+
