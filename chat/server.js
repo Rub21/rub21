@@ -13,6 +13,13 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket) {
 	console.log(socket.id);
 
+	socket.on('message', function(msj) {
+		io.emit('message', msj, socket.id);
+	});
+	socket.on('disconnect', function(e) {
+		socket.emit('message', socket.id);
+
+	});
 });
 
 
