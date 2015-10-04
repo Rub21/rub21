@@ -50,6 +50,14 @@ body{
       color: #fff;
     }
 
+#controls #channel{
+  display: block;
+  width: 100%;
+  font-size: 24pt;
+
+}
+
+
 
     </style>
   </head>
@@ -65,10 +73,21 @@ body{
           $("#msj").val('').focus();
           return false;
         });
+
+        $("#channel").change(function(){
+          socket.emit("change_channel",$("channel").val())
+
+        });
     });
 
     socket.on("message", function (msg,id) {
         $("#message").append($("<li>").text(id+" :"+msg ))
+    });
+
+
+    socket.on("change_channel",function(channel){
+      $("message").html(" ").append($('<li>').text("system , welcome at new channel" + channel));
+
     });
     </script>
 
@@ -77,6 +96,11 @@ body{
       </ul>
       <div id="controls">
         <form action="">
+        <select name="Channel"  id="channel">
+        <option value="channel-a">Chanel A</option>
+        <option value="channel-b">Chanel B</option>
+        <option value="channel-c">Chanel C</option>
+        </select>
           <input type="text" id="msj" placeholder="Escrube tu mnesaje..">
           <input type="submit" value="Enviar">
         </form>
