@@ -1,17 +1,22 @@
-var http = require('http'),  
-fs = require('fs'),  
-io = require('socket.io'),  
-index;  
-fs.readFile('./index.html', function (err, data) {  
- if (err) {
-    throw err;
- }
- index = data;
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var PORT = 3000;
+
+
+app.get('/', function(req, res) {
+
+	res.sendFile(__dirname + '/index.html');
+
 });
-var server = http.createServer(function(request, response) {  
-  response.writeHeader(200, {"Content-Type": "text/html"});
-  response.write(index);
-  response.end();
-}).listen(3000);
-//and replace var socket = io.listen(1223, "1.2.3.4"); with:
-var socket = io.listen(server);
+
+io.on('connection', function(socket) {
+	console.log(socket.id);
+
+});
+
+
+http.listen(PORT, function() {
+	console.log('Puerto:' + PORT);
+	// body...
+})

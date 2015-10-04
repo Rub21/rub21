@@ -1,39 +1,28 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="http://your-io-server/socket.io/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>chat</title>
+
+    <script src="/socket.io/socket.io.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://www.mapbox.com/base/latest/base.css" rel="stylesheet" />
+  </head>
+  <body>
     <script>
-        <!-- We will add this later -->
-        </script>
-<body>
+    var socket= io();
+    </script>
 
-<div class="row">
-  <div class="span2">
-      <ul id="people" class="unstyled"></ul>
-  </div>
-  <div class="span4">
-      <ul id="msgs" class="unstyled">
-  </div>
-</div>
-<div class="row">
-    <div class="span5 offset2" id="login">
-        <form class="form-inline">
-              <input type="text" class="input-small" placeholder="Your name" id="name">
-            <input type="button" name="join" id="join" value="Join" class="btn btn-primary">
-        </form>
+    <ul id="message">
+      
+    </ul>
+    <div id="controls">
+      <form action="">
+        <input type="text" id="msj" placeholder="Escrube tu mnesaje..">
+        <input type="submit" value="Enviar">
+      </form>
     </div>
-
-    <div class="span5 offset2" id="chat">
-        <form id="2" class="form-inline">
-              <input type="text" class="input" placeholder="Your message" id="msg">
-            <input type="button" name="send" id="send" value="Send" class="btn btn-success">
-        </form>
-    </div>
-  </div>
-</div>
-
-</body>
+  </body>
 </html>
