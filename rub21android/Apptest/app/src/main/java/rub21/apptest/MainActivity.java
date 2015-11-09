@@ -3,6 +3,7 @@ package rub21.apptest;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Rating;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -19,44 +20,21 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    public static Button button_sbm;
-
-
-
-
+    private  static  Button button_sbn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onButtonClickListner();
-        
+        OnClickButtonListener();
     }
 
-public void onButtonClickListner(){
-    button_sbm= (Button) findViewById(R.id.button);
-    button_sbm.setOnClickListener(new View.OnClickListener() {
+public void OnClickButtonListener(){
+    button_sbn= (Button)findViewById(R.id.button);
+    button_sbn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            AlertDialog.Builder a_buBuilder = new AlertDialog.Builder(MainActivity.this);
-            a_buBuilder.setMessage("Do you want anything?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            AlertDialog alert= a_buBuilder.create();
-            alert.setTitle("Alert!!");
-            alert.show();
-
-
+            Intent intent = new Intent("rub21.apptest.SecondActivity");
+            startActivity(intent);
         }
     });
 }
